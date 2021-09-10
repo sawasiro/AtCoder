@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>tab</Title>
+      <Shortcut>tab</Shortcut>
+      <Description>いつものコード</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="cpp">
+  <![CDATA[#include<bits/stdc++.h>
+//#include<atcoder/all>
+using namespace std;
+//using namespace atcoder;
+using ll = long long;
+using Graph = vector<vector<int>>;
+using P = pair<int, int>;
+#define rep(i,m,n) for(int (i)=(m);(i)<(n);++(i))
+#define rrep(i,m,n) for(int (i)=(n)-1;(i)>=(m);--(i))
+#define all(x) (x).begin(),(x).end()
+#define out(y,x,h,w) (y)<0||(x)<0||(y)>=(h)||(x)>=(w)
+constexpr double PI = 3.1415926535897932;
+
+template<class T>inline bool chmin(T& a, T b) {
+    if (a > b) {
+        a = b;
+        return true;
+    }
+    return false;
+}
+template<class T>inline bool chmax(T& a, T b) {
+    if (a < b) {
+        a = b;
+        return true;
+    }
+    return false;
+}
+inline void init() {
+    cin.tie(nullptr); cout.tie(nullptr);
+    ios::sync_with_stdio(false);
+    cout << fixed << setprecision(15);
+}
+
+int main() {
+    init();
+
+    $end$    
+
+    return 0;
+}]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>BIT</Title>
+      <Shortcut>BIT</Shortcut>
+      <Description>Binary Indexed Tree</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="cpp"><![CDATA[//Binary Indexed Tree
+//1-indexed
+template<class T> class BIT {
+	vector<T>arr;
+	const int n;
+
+public:
+	//初期化
+	BIT(int _n) :arr(_n + 1, 0), n(_n) {}
+
+	//１番目からi番目までの和
+	T sum(int i) {
+		T s = 0;
+		while (i > 0) {
+			s += arr[i];
+			i -= i & (-i); //LSB減算
+		}
+		return s;
+	}
+
+	//[i, j]の要素の総和
+	T sum(int i, int j) {
+		T ret_i = sum(i - 1);
+		T ret_j = sum(j);
+		return ret_j - ret_i;
+	}
+
+	//i番目に要素xを追加
+	void add(int i, T x) {
+		while (i <= n) {
+			arr[i] += x;
+			i += i & (-i);
+		}
+	}
+};$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

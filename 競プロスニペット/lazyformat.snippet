@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>lazyformat</Title>
+      <Shortcut>lazyformat</Shortcut>
+      <Description>Code snippet for Debug.Log()</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="cpp"><![CDATA[using S = long long;//モノイドの型
+using F = long long;//写像の型
+
+S op(S a, S b) { return max(a, b); } //S * S → S 
+S e() { return -INF; }//単位元e
+S mapping(F f, S x) { return max(f,x); } //操作fを各ノードが持つdataの値xに対して作用させる
+F composition(F f, F g) { return max(f,g); }//gがこれまでの操作、fが後に追加する操作
+F id() { return 0; }$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Pow</Title>
+      <Shortcut>Pow</Shortcut>
+      <Description>べき乗の高速計算</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="cpp">
+        <![CDATA[template<class T>T Pow(T a, int n) {
+	T ret = 1;
+	while (n > 0) {
+		if (n & 1)ret *= a;
+		a *= a;
+		n >>= 1;
+	}
+	return ret;
+}$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

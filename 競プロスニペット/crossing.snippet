@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>crossing</Title>
+      <Shortcut>crossing</Shortcut>
+      <Description>二つの線分が交差しているかの判定</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="cpp"><![CDATA[typedef struct Point_Coordinates {
+	double x, y;
+} point;
+
+// 線分ab, cdが交差する場合True
+// 端点が他方の線分上にある場合もTrue
+int Judge(point& a, point& b, point& c, point& d) {
+	double s, t;
+	//線分abの方程式で,線分cdが交差しているかを判定
+	s = (a.x - b.x) * (c.y - a.y) - (a.y - b.y) * (c.x - a.x);
+	t = (a.x - b.x) * (d.y - a.y) - (a.y - b.y) * (d.x - a.x);
+	if (s * t > 0) return false;
+
+	//線分cdの方程式で、線分abが交差しているかを判定
+	s = (c.x - d.x) * (a.y - c.y) - (c.y - d.y) * (a.x - c.x);
+	t = (c.x - d.x) * (b.y - c.y) - (c.y - d.y) * (b.x - c.x);
+	if (s * t > 0) return false;
+
+	return true;
+}$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

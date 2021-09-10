@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>modpow</Title>
+      <Shortcut>modpow</Shortcut>
+      <Description>べき乗の高速計算</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="cpp"><![CDATA[template< typename T > T mod_pow(T x, T n, const T &p) {
+  T ret = 1;
+  while(n > 0) {
+    if(n & 1) (ret *= x) %= p;
+    (x *= x) %= p;
+    n >>= 1;
+  }
+  return ret;
+}$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
