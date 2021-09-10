@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>max_flow</Title>
+      <Shortcut>maxflow</Shortcut>
+      <Description>最大流問題をO(F|E|)で解く</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[template<class T> class ford_fulkerson {
+	int MAX_V;
+	vector<vector<tuple<int, T, int>>>G;
+	vector<bool>used;
+
+public:
+	//初期化
+	ford_fulkerson(int _v){
+		MAX_V = _v;
+		G.resize(MAX_V);
+	}
+	//辺を追加
+	void add_edge(int from, int to, T cap) {
+		G[from].emplace_back(to, cap, (int)G[to].size());
+		G[to].emplace_back(from, 0, (int)G[from].size() - 1);
+	}
+	//増加パスをDFSで探す
+	int dfs(int v, int t, int f) {
+		if (v == t)return f;
+		used[v] = true;
+		rep(i, 0, G[v].size()) {
+			int to = get<0>(G[v][i]), rev = get<2>(G[v][i]);
+			T& cap = get<1>(G[v][i]);
+			if (!used[to] && cap > 0) {
+				int d = dfs(to, t, min(f, cap));//経路中の最小コスト
+				if (d > 0) {
+					cap -= d;
+					get<1>(G[to][rev]) += d;
+					return d;
+				}
+			}
+		}
+		return 0;
+	}
+	//sからtへの最大流
+	int max_flow(int s, int t) {
+		int res = 0;
+		for (;;) {
+			used.resize(MAX_V, false);
+			int f = dfs(s, t, INF);
+			if (f == 0)return res;
+			res += f;
+			used.clear();
+		}
+	}
+};$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

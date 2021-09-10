@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>AccSum2D</Title>
+      <Shortcut>AccSum2D</Shortcut>
+      <Description>二次元累積和</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="cpp">
+        <![CDATA[//二次元累積和
+struct AccSum2D {
+    vector<vector<ll>>v;
+    int H, W;
+    AccSum2D(vector<vector<ll>>& vec) {
+        H = vec.size();
+        W = vec[0].size();
+        v.resize(H + 1, vector<ll>(W + 1));
+        rep(i, 0, H) {
+            rep(j, 0, W) {
+                v[i + 1][j + 1] = vec[i][j];
+            }
+        }
+
+        //横に累積和
+        rep(i, 0, H)rep(j, 0, W)v[i + 1][j + 1] += v[i + 1][j];
+        //縦に累積和
+        rep(j, 0, W)rep(i, 0, H)v[i + 1][j + 1] += v[i][j + 1];
+
+    }
+
+    //0-indexed
+    //Σ(i=y1,y2)Σ(j=x1,x2)sum[i][j]
+    ll sum(ll y1, ll x1, ll y2, ll x2) {
+        ++y1; ++x1; ++y2; ++x2;
+        return v[y2][x2] - v[y1 - 1][x2] - v[y2][x1 - 1] + v[y1 - 1][x1 - 1];
+    }
+};$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

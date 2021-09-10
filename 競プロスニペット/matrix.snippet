@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>matrix</Title>
+      <Shortcut>matrix</Shortcut>
+      <Description>行列の積</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="cpp"><![CDATA[vector<vector<ll>>func(vector<vector<ll>>A, vector<vector<ll>>B) {
+    vector<vector<ll>>res(A.size(), vector<ll>(B[0].size(), 0));
+    rep(i, 0, res.size())rep(j, 0, res[i].size())rep(k, 0, B.size())res[i][j] += A[i][k] * B[j][k];
+    return res;
+}$end$]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

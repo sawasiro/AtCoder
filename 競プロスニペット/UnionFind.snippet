@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>UnionFind</Title>
+      <Shortcut>UnionFind</Shortcut>
+      <Description></Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="false"></Literal>
+      </Declarations>
+      <Code Language="cpp">
+        <![CDATA[struct UnionFind {
+	vector<int>d;
+
+	UnionFind(int N) :d(N, -1){}
+
+	int find(int x) {
+		if (d[x] < 0)return x;
+		return d[x] = find(d[x]);
+	}
+	bool unite(int x, int y) {
+		x = find(x); y = find(y);
+		if (x == y)return false;
+		if (d[x] > d[y])swap(x, y);
+		d[x] += d[y];
+		d[y] = x;
+		return true;
+	}
+	bool same(int x, int y) {
+		return find(x) == find(y);
+	}
+	int size(int x) {
+		return -d[find(x)];
+	}
+};$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
